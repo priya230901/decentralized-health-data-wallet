@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 99%;
+    --foreground: 210 30% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 30% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 30% 10%;
+
+    --primary: 201 90% 27%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 195 60% 95%;
+    --secondary-foreground: 201 90% 27%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 15% 50%;
+
+    --accent: 172 66% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 92%;
+    --input: 210 20% 92%;
+    --ring: 201 90% 27%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --glass-bg: 0 0% 100% / 0.7;
+    --glass-border: 210 20% 92% / 0.5;
+    --shadow-soft: 0 4px 24px -4px hsl(210 30% 10% / 0.06);
+    --shadow-card: 0 1px 3px hsl(210 30% 10% / 0.04), 0 8px 24px -8px hsl(210 30% 10% / 0.08);
+    --shadow-elevated: 0 4px 12px hsl(210 30% 10% / 0.05), 0 16px 40px -8px hsl(210 30% 10% / 0.1);
+
+    --success: 152 60% 42%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 210 30% 10%;
+    --sidebar-primary: 201 90% 27%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 195 60% 95%;
+    --sidebar-accent-foreground: 201 90% 27%;
+    --sidebar-border: 210 20% 94%;
+    --sidebar-ring: 201 90% 27%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-card/70 backdrop-blur-xl border border-border/50 rounded-xl;
+    box-shadow: var(--shadow-card);
+  }
+
+  .glass-card-elevated {
+    @apply bg-card/80 backdrop-blur-xl border border-border/40 rounded-xl;
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+  }
+
+  .badge-verified {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-success/10 text-success;
+  }
+
+  .badge-tampered {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-destructive/10 text-destructive;
+  }
+
+  .badge-pending {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-warning/10 text-warning;
+  }
+
+  .panic-pulse {
+    animation: panic-pulse 0.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes panic-pulse {
+    from { box-shadow: 0 0 0 0 hsl(0 72% 51% / 0.4); }
+    to { box-shadow: 0 0 0 20px hsl(0 72% 51% / 0); }
+  }
+
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.4s ease-out;
+  }
+}
